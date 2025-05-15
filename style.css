@@ -58,5 +58,10 @@ button:hover {
     text-align: center;
     justify-items: baseline;
     position: relative;
+    
+}
+.footer:hover {
+    background-color: rgba(103, 133, 52, 0.993);
+   transform: scale(0.9) rotate(10deg) ;
 }
 
