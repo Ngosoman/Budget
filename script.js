@@ -1,10 +1,11 @@
 let totalIncome = 0;
 let totalExpenses = 0;
+let totalRemainingBudget = 0;
 let expenses = [];
 
 function setBudget() {
     const income = document.getElementById('income').value;
-    if (income > 0) {
+    if (income && !isNaN(income)) {
         totalIncome = parseFloat(income);
         document.getElementById('total-income').innerText = totalIncome.toFixed(2);
         updateRemainingBudget();
@@ -18,9 +19,10 @@ function addExpense() {
     const expenseName = document.getElementById('expense-name').value;
     const expenseAmount = document.getElementById('expense-amount').value;
 
-    if (expenseName && expenseAmount > 0) {
-        totalExpenses += parseFloat(expenseAmount);
-        expenses.push({ name: expenseName, amount: parseFloat(expenseAmount) });
+    if (expenseName && expenseAmount > 0 && !isNaN(expenseAmount)) {
+        const amount = parseFloat(expenseAmount);
+        totalExpenses += amount;
+        expenses.push({ name: expenseName, amount: amount });
 
         document.getElementById('total-expenses').innerText = totalExpenses.toFixed(2);
         updateRemainingBudget();
@@ -41,7 +43,7 @@ function updateExpenseList() {
 
     expenses.forEach(expense => {
         const li = document.createElement('li');
-        li.innerText = `${expense.name}: $${expense.amount.toFixed(2)}`;
+        li.innerText = `${expense.name}: ${expense.amount.toFixed(2)}`;
         expenseList.appendChild(li);
     });
 }
